@@ -28,3 +28,26 @@ jobs:
       # flake8で静的解析を実行
       - name: Run flake8
         run: flake8 .
+
+  python-test:
+    name: Run python-test
+    runs-on: ubuntu-latest
+
+    steps:
+      # ソースコードのチェックアウト
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      # Python環境をセットアップ
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11'
+
+      # テストツールをインストール
+      - name: Install pytest
+        run: pip install pytest
+
+      # pytestでテストを実行
+      - name: Run pytest
+        run: pytest -v
